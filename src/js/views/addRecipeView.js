@@ -1,9 +1,9 @@
-import View from './view.js';
-import icons from 'url:../../img/icons.svg';
+import View from './View.js';
+import icons from 'url:../../img/icons.svg'; // Parcel 2
 
-class addRecipeView extends View {
+class AddRecipeView extends View {
   _parentElement = document.querySelector('.upload');
-  _message = 'Recipe was succesesfully uploaded';
+  _message = 'Recipe was successfully uploaded :)';
 
   _window = document.querySelector('.add-recipe-window');
   _overlay = document.querySelector('.overlay');
@@ -12,8 +12,8 @@ class addRecipeView extends View {
 
   constructor() {
     super();
-    this._addHendlerShowWindow();
-    this._addHendlerHideWindow();
+    this._addHandlerShowWindow();
+    this._addHandlerHideWindow();
   }
 
   toggleWindow() {
@@ -21,19 +21,18 @@ class addRecipeView extends View {
     this._window.classList.toggle('hidden');
   }
 
-  _addHendlerHideWindow() {
-    this._btnClose.addEventListener('click', this.toggleWindow.bind(this));
-    this._overlay.addEventListener('click', this.toggleWindow.bind(this));
+  _addHandlerShowWindow() {
+    this._btnOpen.addEventListener('click', this.toggleWindow.bind(this));
   }
 
-  _addHendlerShowWindow() {
-    this._btnOpen.addEventListener('click', this.toggleWindow.bind(this));
+  _addHandlerHideWindow() {
+    this._btnClose.addEventListener('click', this.toggleWindow.bind(this));
+    this._overlay.addEventListener('click', this.toggleWindow.bind(this));
   }
 
   addHandlerUpload(handler) {
     this._parentElement.addEventListener('submit', function (e) {
       e.preventDefault();
-
       const dataArr = [...new FormData(this)];
       const data = Object.fromEntries(dataArr);
       handler(data);
@@ -43,4 +42,4 @@ class addRecipeView extends View {
   _generateMarkup() {}
 }
 
-export default new addRecipeView();
+export default new AddRecipeView();
